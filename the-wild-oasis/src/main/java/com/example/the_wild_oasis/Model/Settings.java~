@@ -1,0 +1,14 @@
+package com.example.the_wild_oasis.Model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "settings")
+public class Settings extends BaseEntity{
+    private int settings_id;
+    private int minBookingsLength;
+    private int maxBookingsLength;
+    private int maxGuestsPerBookings;
+    private double breakfastPrice;
+}

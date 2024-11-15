@@ -1,0 +1,24 @@
+#Các kinh nghiệm rút ra
+1. Khi tạo url thì 1 phương thức trong controller không được tạo trùng url và phương thức HTTP
+2. thư mục target là nơi đóng gói dữ liệu như img,css ..., khi chạy thì chương trình lấy dữ liệu trong trong thư mục này
+    Khi tải ảnh lên server thì phải tải lại project để cập nhật dữ liệu vừa tải lên server.
+3. System.getProperty("user.dir") dùng để lấy ra đường dẫn trỏ đến thư mục chứa project
+4. ký tự "\" không được sử dụng để thay thế ký tự này khi lấy được đường dẫn thì sử làm như sau:
+    String.replace("\\","\\\\")
+5. Cách để chặn vòng lặp vô tận trong quan hệ OneToMany và ManyToOne
+    - sử dụng @JsonManagedReference ở quan hệ OneToMany
+    - sử dụng @JsonBackReference ở quan hệ ManyToOne
+    - sử dụng @JsonIdentityInfo hoặc các lớp DTO
+6. Lỗi Multiple back-reference properties with name 'defaultReference' khi sử dụng  @JsonManagedReference, @JsonBackReference
+    để trành xảy ra vòng lặp vô tận.
+    - cách xử lý: đặt giá trị cho value để phân biệt
+    vd: @JsonBackReference(value = "cabin-bookings"), @JsonManagedReference(value = "cabin-bookings")
+7. Lỗi Type definition error: [simple type, class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor]]
+    xảy ra khi sử dụng fetch = FetchType.LAZY. Lý do: khi tải đối tượng thì chỉ nhận được proxy chứ không
+    truy cập vào DB để lấy dữ liệu trừ phi truy cập vào thuộc tính của đối tượng đó.
+    Cách giải quyết: chuyển fetch = FetchType.EAGER
+    Nên sử dụng fetch = FetchType.LAZY trong OneToMany và fetch = FetchType.EAGER trong ManyToOne
+8. Cân nhắc sử dụng @EntityGraph để lấy dữ liệu cần thiết.
+9. Cấu Hình ObjectMapper Để Xử Lý Hibernate Proxies ( xử lý khi sử dụng fetch = FetchType.LAZY )
+10. @RequestParam(name = "page",required = false, defaultValue = "1" ) int page
+    dùng defaultValue để thiết lập giá trị mặc định trong trường hợp khi người dùng không nhập giá trị

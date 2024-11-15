@@ -1,0 +1,7 @@
+package com.example.the_wild_oasis.repository;
+
+import com.example.the_wild_oasis.Model.Guests;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface guestsRepository extends JpaRepository<Guests, Integer> {
+}

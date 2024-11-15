@@ -1,0 +1,9 @@
+package com.example.the_wild_oasis.Model;
+
+import lombok.Data;
+
+@Data
+public class Response<T> {
+    private T data;
+    private String message;
+}
