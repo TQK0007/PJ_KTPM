@@ -47,7 +47,7 @@ public class CabinService {
     @Transactional
     public Cabin saveCabin(Cabin cabin) throws Exception
     {
-        if(findByID(cabin.getCabin_id()).isPresent()) throw new RuntimeException("cabin_id already exists");
+        if(cabinRepository.findById(cabin.getCabin_id()).isPresent()) throw new RuntimeException("cabin_id already exists");
         if(cabin.getName() == null || cabin.getName().isEmpty()) throw new RuntimeException("Cabin name is required");
         if(cabin.getMaxCapacity() <=0 ) throw new RuntimeException("Max capacity must be greater than 0");
         if(cabin.getRegularPrice() <=0 ) throw new RuntimeException("Regular price must be greater than 0");
